@@ -1,0 +1,22 @@
+---
+knit: (function(inputFile, encoding) {source('_pre_knit.R'); render(inputFile, output_format = custom_format, run_pandoc = FALSE); original = paste0(inputFile,"_tmp.Rmd"); rmarkdown::render(inputFile, encoding = encoding); file.copy(original, inputFile)})
+output: 
+  pdf_document
+---
+
+```{r preformat, echo=FALSE}
+cap = function(x){if(knitr::is_latex_output()) 
+  sprintf("\\textsc{%s}",x) else x}
+```
+
+This is an R Markdown ◊cap(document with formatting). 
+
+```{r reformat, echo=FALSE}
+cap = function(x){if(knitr::is_latex_output()) 
+  sprintf("\\textbf{%s}",x) else x}
+```
+
+## Section 2
+
+This is new section with ◊cap(bizarre formatting). 
+
